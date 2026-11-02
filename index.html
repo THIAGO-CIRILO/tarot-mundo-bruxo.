@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tarô do Mundo Bruxo · 78 cartas</title>
+<meta name="description" content="Tarô completo de 78 cartas inspirado em universos de magia. R$ 197 + frete. Acompanha bolsa.">
+<style>
+:root{
+  --accent:#e8572a; --accent-d:#c9441c; --accent-soft:#fff1ec;
+  --ink:#222; --muted:#757575; --line:#ececec; --bg:#f5f5f5; --card:#fff;
+  --purple:#3a2466; --gold:#c99a2e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5;padding-bottom:78px}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:480px;margin:0 auto;background:var(--bg)}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:30;background:var(--accent);color:#fff;display:flex;align-items:center;gap:10px;padding:10px 14px}
+.topbar .logo{font-weight:700;letter-spacing:.2px;font-size:16px;flex:1;display:flex;align-items:center;gap:8px}
+.topbar .logo span{background:#fff;color:var(--accent);border-radius:6px;width:26px;height:26px;display:grid;place-items:center;font-size:15px}
+.topbar .pill{background:rgba(255,255,255,.18);border-radius:999px;padding:4px 10px;font-size:12px}
+
+/* gallery */
+.gallery{position:relative;background:#111}
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.slides::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:4/5;position:relative;overflow:hidden;background:#111;cursor:zoom-in}
+.slide .bg{position:absolute;inset:-20px;width:calc(100% + 40px);height:calc(100% + 40px);object-fit:cover;filter:blur(18px) brightness(.55)}
+.slide .fg{position:relative;width:100%;height:100%;object-fit:contain}
+.slide.white{background:#fff}
+.slide.contain img{object-fit:contain}
+.counter{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;font-size:12px;border-radius:999px;padding:3px 10px}
+.thumbs{display:flex;gap:6px;padding:8px 10px;background:var(--card);overflow-x:auto;scrollbar-width:none}
+.thumbs::-webkit-scrollbar{display:none}
+.thumbs button{flex:0 0 56px;height:56px;border:2px solid transparent;border-radius:4px;overflow:hidden;background:none;cursor:pointer;padding:0;position:relative}
+.thumbs button.on{border-color:var(--accent)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:18px;background:rgba(0,0,0,.35)}
+
+/* blocks */
+.block{background:var(--card);margin-top:8px;padding:14px 16px}
+.block:first-of-type{margin-top:0}
+.price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.price{color:var(--accent);font-size:28px;font-weight:700}
+.price small{font-size:16px;font-weight:600}
+.plus{color:var(--muted);font-size:13px}
+.title{font-size:17px;font-weight:500;margin-top:6px;line-height:1.35}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.badge{font-size:12px;border:1px solid var(--accent);color:var(--accent);border-radius:3px;padding:1px 6px;background:var(--accent-soft)}
+.badge.dark{border-color:var(--purple);color:var(--purple);background:#f3effa}
+.social{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;color:var(--muted)}
+.avatars{display:flex}
+.avatars img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid #fff;margin-left:-8px}
+.avatars img:first-child{margin-left:0}
+
+.rows .row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rows .row:last-child{border-bottom:0}
+.rows .k{color:var(--muted);width:78px;flex:0 0 78px}
+.rows .v b{font-weight:600}
+.rows .v .sub{color:var(--muted);font-size:13px}
+
+.h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.h h2{font-size:16px;font-weight:600}
+.h a{font-size:13px;color:var(--accent)}
+
+/* reviews */
+.rev-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
+.rev-strip::-webkit-scrollbar{display:none}
+.rev-strip button{flex:0 0 92px;height:92px;border:0;border-radius:4px;overflow:hidden;cursor:zoom-in;padding:0}
+.rev-strip img{width:100%;height:100%;object-fit:cover}
+.review{padding:14px 0;border-bottom:1px solid var(--line)}
+.review:last-child{border-bottom:0}
+.who{display:flex;align-items:center;gap:10px}
+.ava{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px;flex:0 0 34px}
+.who .n{font-size:14px;font-weight:600}
+.who .tag{font-size:12px;color:#2e8b57}
+.review p{margin:8px 0 0 44px;font-size:15px}
+.review .pics{display:flex;gap:6px;margin:8px 0 0 44px}
+.review .pics button{width:96px;height:96px;border:0;padding:0;border-radius:4px;overflow:hidden;cursor:zoom-in}
+.review .pics img{width:100%;height:100%;object-fit:cover}
+.review .meta{margin:6px 0 0 44px;font-size:12px;color:var(--muted)}
+.more-btn{display:block;width:100%;margin-top:10px;padding:10px;border:1px solid var(--line);background:#fff;border-radius:4px;color:var(--accent);font-size:14px;cursor:pointer}
+
+/* shop */
+.shop{display:flex;gap:12px;align-items:center}
+.shop .logo2{width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#6a46b8,#1f1238);display:grid;place-items:center;color:var(--gold);font-size:24px;flex:0 0 54px}
+.shop .nm{font-weight:600}
+.shop .ds{font-size:13px;color:var(--muted)}
+.shop-wa{margin-left:auto;display:inline-flex;align-items:center;gap:5px;border:1px solid #1fa855;color:#1fa855;border-radius:4px;padding:6px 12px;font-size:14px;font-weight:600}
+.shop-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:12px;border-top:1px solid var(--line);padding-top:10px;text-align:center;font-size:12px;color:var(--muted)}
+.shop-stats b{display:block;color:var(--accent);font-size:15px}
+
+/* specs */
+table.specs{width:100%;border-collapse:collapse;font-size:14px}
+table.specs td{padding:8px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.specs td:first-child{color:var(--muted);width:42%}
+table.specs tr:last-child td{border-bottom:0}
+
+/* description */
+.desc{font-size:15px;color:#333}
+.desc p{margin-bottom:10px}
+.desc h3{font-size:15px;font-weight:700;margin:18px 0 8px;color:var(--purple);letter-spacing:.3px}
+.desc .lead{font-size:17px;font-weight:600;color:var(--ink)}
+.desc .quote{border-left:3px solid var(--gold);padding:4px 0 4px 12px;margin:12px 0;font-style:italic;color:#444}
+.desc img{width:100%;border-radius:6px;margin:12px 0;cursor:zoom-in}
+.collapsed{max-height:520px;overflow:hidden;position:relative}
+.collapsed::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(transparent,#fff)}
+.naipes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 14px}
+.naipe{border:1px solid var(--line);border-radius:6px;padding:10px;background:#faf8fd}
+.naipe b{display:block;color:var(--purple);font-size:14px}
+.naipe span{font-size:13px;color:var(--muted)}
+.checks{list-style:none;margin:6px 0 12px}
+.checks li{padding-left:24px;position:relative;margin-bottom:6px}
+.checks li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+
+.video-box{border-radius:8px;overflow:hidden;background:#000;max-width:340px;margin:0 auto}
+.video-box video{width:100%;aspect-ratio:9/16;object-fit:cover}
+
+details{border-bottom:1px solid var(--line);padding:12px 0}
+details:last-child{border-bottom:0}
+summary{cursor:pointer;font-weight:600;font-size:14px;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";color:var(--accent);font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:8px;font-size:14px;color:#444}
+
+.final{text-align:center;background:linear-gradient(160deg,#2a1650,#120a24);color:#fff;padding:28px 18px}
+.final h2{font-size:20px;margin-bottom:6px}
+.final p{opacity:.85;font-size:14px}
+.final .price{color:#ffd27a;margin:14px 0 2px;display:block}
+.final .cta{display:inline-block;margin-top:14px;background:var(--accent);color:#fff;font-weight:700;padding:14px 26px;border-radius:4px;font-size:16px}
+.disclaimer{font-size:12px;color:var(--muted);text-align:center;padding:16px 20px 24px}
+
+/* bottom bar */
+.bottombar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;justify-content:center;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.bottombar .in{display:flex;width:100%;max-width:480px;height:56px}
+.bb-side{flex:0 0 33%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:var(--accent);background:#fff;border-right:1px solid var(--line)}
+.bb-side .ic{font-size:18px;line-height:1;margin-bottom:2px}
+.bb-side.wa{color:#1fa855}
+.bb-buy{flex:1;background:var(--accent);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.bb-buy small{font-weight:400;font-size:12px;opacity:.9}
+.bb-buy:active{background:var(--accent-d)}
+
+
+/* vídeo flutuante */
+.fv{position:fixed;right:max(12px,calc(50vw - 240px + 12px));bottom:calc(70px + env(safe-area-inset-bottom));z-index:50;width:96px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.35);border:2px solid #fff;background:#000;cursor:pointer;transition:all .25s ease}
+.fv video{width:100%;height:100%;object-fit:cover;display:block}
+.fv .fv-x{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:14px;line-height:22px;cursor:pointer;z-index:2}
+.fv .fv-tag{position:absolute;left:0;right:0;bottom:0;padding:14px 6px 6px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-size:11px;text-align:center;pointer-events:none}
+.fv.big{right:50%;transform:translateX(50%);bottom:calc(76px + env(safe-area-inset-bottom));width:min(300px,78vw);border-radius:12px;cursor:default}
+.fv.big .fv-tag{display:none}
+.fv.hide{display:none}
+.fv-shade{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:49;display:none}
+.fv-shade.on{display:block}
+
+/* oferta */
+.offer{position:sticky;top:46px;z-index:29;background:#1f1238;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 12px;font-size:13px;flex-wrap:wrap;text-align:center}
+.offer .o-price s{opacity:.7}
+.offer .o-price b{color:#ffd27a}
+.offer .clock{display:inline-flex;gap:3px;align-items:center}
+.offer .clock span{background:var(--accent);color:#fff;font-weight:700;font-variant-numeric:tabular-nums;border-radius:4px;padding:2px 6px;font-size:14px;min-width:28px;text-align:center}
+.offer.ended{background:#444}
+.old{color:var(--muted);text-decoration:line-through;font-size:15px}
+.off{background:var(--accent);color:#fff;font-size:12px;font-weight:700;border-radius:3px;padding:1px 6px}
+.price-timer{margin-top:8px;font-size:13px;color:var(--accent);font-weight:600}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
+.lb.on{display:flex}
+.lb img{max-height:88vh;max-width:100%;object-fit:contain;border-radius:4px}
+.lb .x{position:absolute;top:12px;right:16px;color:#fff;font-size:30px;background:none;border:0;cursor:pointer}
+.lb .cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#ddd;font-size:13px;padding:0 20px}
+
+@media (min-width:900px){
+  body{background:#ececec}
+  .wrap{box-shadow:0 0 0 1px #e2e2e2}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="topbar">
+    <div class="logo"><span>☾</span>Tarô do Mundo Bruxo</div>
+    <div class="pill">Direto do criador</div>
+  </header>
+  <div class="offer" id="offer">
+    <span class="o-text">⏳ Oferta especial</span>
+    <span class="o-price"><s>R$ 250</s> por <b>R$ 197</b></span>
+    <span class="clock">termina em <span id="mm">10</span>:<span id="ss">00</span></span>
+  </div>
+
+  <!-- GALERIA -->
+  <section class="gallery">
+    <div class="slides" id="slides">
+      <div class="slide white" data-full="assets/n_leque.jpg"><img class="fg" src="assets/n_leque.jpg" alt="O Louco e A Sacerdotisa com a bolsa"></div>
+      <div class="slide" data-full="assets/k_info.jpg"><img class="bg" src="assets/k_info.jpg" alt=""><img class="fg" src="assets/k_info.jpg" alt="O que acompanha o kit"></div>
+      <div class="slide" data-full="assets/spread.jpg"><img class="bg" src="assets/spread.jpg" alt=""><img class="fg" src="assets/spread.jpg" alt="Tiragem com O Julgamento, O Mundo, Três de Cálices, O Hierofante, O Louco e Nove de Lâminas"></div>
+      <div class="slide" data-full="assets/n_mao.jpg"><img class="bg" src="assets/n_mao.jpg" alt=""><img class="fg" src="assets/n_mao.jpg" alt="Cartas em mãos"></div>
+      <div class="slide" data-full="assets/k_mesa.jpg"><img class="bg" src="assets/k_mesa.jpg" alt=""><img class="fg" src="assets/k_mesa.jpg" alt="Kit completo"></div>
+      <div class="slide" data-full="assets/kit.jpg"><img class="bg" src="assets/kit.jpg" alt=""><img class="fg" src="assets/kit.jpg" alt="Kit completo: carta de boas-vindas, bolsa, baralho e adesivos"></div>
+      <div class="slide white" data-full="assets/n_grade.jpg"><img class="fg" src="assets/n_grade.jpg" alt="Seis cartas do baralho"></div>
+      <div class="slide" data-full="assets/r_junior_mundo.jpg"><img class="bg" src="assets/r_junior_mundo.jpg" alt=""><img class="fg" src="assets/r_junior_mundo.jpg" alt="Carta O Mundo"></div>
+      <div class="slide" data-full="assets/k_madeira.jpg"><img class="bg" src="assets/k_madeira.jpg" alt=""><img class="fg" src="assets/k_madeira.jpg" alt="Kit completo na mesa"></div>
+      <div class="slide white" data-full="assets/n_dois.jpg"><img class="fg" src="assets/n_dois.jpg" alt="Dois de Cálices e A Imperatriz"></div>
+      <div class="slide" data-full="assets/r_felipe.jpg"><img class="bg" src="assets/r_felipe.jpg" alt=""><img class="fg" src="assets/r_felipe.jpg" alt="Carta O Carro"></div>
+      <div class="slide" data-full="assets/k_marmore.jpg"><img class="bg" src="assets/k_marmore.jpg" alt=""><img class="fg" src="assets/k_marmore.jpg" alt="Kit com saquinho"></div>
+      <div class="slide white" data-full="assets/n_tres.jpg"><img class="fg" src="assets/n_tres.jpg" alt="Três cartas e a bolsa"></div>
+      <div class="slide" data-full="assets/verso.jpg"><img class="bg" src="assets/verso.jpg" alt=""><img class="fg" src="assets/verso.jpg" alt="Verso das cartas"></div>
+      <div class="slide white" data-full="assets/n_medalhas.jpg"><img class="fg" src="assets/n_medalhas.jpg" alt="A Imperatriz, Ás de Medalhas e Ás de Cálices"></div>
+      <div class="slide" data-full="assets/bolsa.jpg"><img class="bg" src="assets/bolsa.jpg" alt=""><img class="fg" src="assets/bolsa.jpg" alt="Bolsa e baralho no saquinho"></div>
+      <div class="slide" data-full="assets/producao.jpg"><img class="bg" src="assets/producao.jpg" alt=""><img class="fg" src="assets/producao.jpg" alt="Baralhos saindo da gráfica"></div>
+      <div class="slide" data-full="assets/carta.jpg"><img class="bg" src="assets/carta.jpg" alt=""><img class="fg" src="assets/carta.jpg" alt="Carta de boas-vindas que acompanha o baralho"></div>
+    </div>
+    <div class="counter" id="counter">1/18</div>
+  </section>
+  <div class="thumbs" id="thumbs">
+    <button class="on"><img src="assets/n_leque.jpg" alt=""></button>
+    <button><img src="assets/k_info.jpg" alt=""></button>
+    <button><img src="assets/spread.jpg" alt=""></button>
+    <button><img src="assets/n_mao.jpg" alt=""></button>
+    <button><img src="assets/k_mesa.jpg" alt=""></button>
+    <button><img src="assets/kit.jpg" alt=""></button>
+    <button><img src="assets/n_grade.jpg" alt=""></button>
+    <button><img src="assets/r_junior_mundo.jpg" alt=""></button>
+    <button><img src="assets/k_madeira.jpg" alt=""></button>
+    <button><img src="assets/n_dois.jpg" alt=""></button>
+    <button><img src="assets/r_felipe.jpg" alt=""></button>
+    <button><img src="assets/k_marmore.jpg" alt=""></button>
+    <button><img src="assets/n_tres.jpg" alt=""></button>
+    <button><img src="assets/verso.jpg" alt=""></button>
+    <button><img src="assets/n_medalhas.jpg" alt=""></button>
+    <button><img src="assets/bolsa.jpg" alt=""></button>
+    <button><img src="assets/producao.jpg" alt=""></button>
+    <button><img src="assets/carta.jpg" alt=""></button>
+  </div>
+
+  <!-- PREÇO -->
+  <section class="block">
+    <div class="price-row">
+      <div class="price" id="priceMain"><small>R$</small> 197<small>,00</small></div>
+      <span class="old" id="priceOld">R$ 250,00</span>
+      <span class="off" id="priceOff">-21%</span>
+      <div class="plus">+ frete</div>
+    </div>
+    <div class="price-timer" id="priceTimer">Preço promocional válido por mais <b id="pt">10:00</b></div>
+    <h1 class="title">Tarô do Mundo Bruxo · Baralho completo 78 cartas ilustradas + necessaire + adesivos · Arcanos Maiores e Menores</h1>
+    <div class="badges">
+      <span class="badge">78 cartas</span>
+      <span class="badge">Necessaire + adesivos</span>
+      <span class="badge">Laminação brilho</span>
+      <span class="badge dark">Produto autoral</span>
+    </div>
+    <a class="social" href="#avaliacoes">
+      <div class="avatars">
+        <img src="assets/r_lari.jpg" alt=""><img src="assets/r_vanessa.jpg" alt=""><img src="assets/r_marcio.jpg" alt=""><img src="assets/r_junior_caixa.jpg" alt="">
+      </div>
+      <span>Quem já recebeu está mostrando o baralho no grupo →</span>
+    </a>
+  </section>
+
+  <!-- ENVIO -->
+  <section class="block rows">
+    <div class="row"><div class="k">Frete</div><div class="v"><b>Calculado pelo seu CEP</b><div class="sub">O valor aparece no momento da compra, de acordo com o endereço informado.</div></div></div>
+    <div class="row"><div class="k">Produção</div><div class="v"><b>Impresso em gráfica</b><div class="sub">Couché 300g, frente e verso, recorte eletrônico.</div></div></div>
+    <div class="row"><div class="k">Na caixa</div><div class="v"><b>78 cartas + necessaire</b><div class="sub">Necessaire, carta de boas-vindas com QR code e kit de adesivos.</div></div></div>
+  </section>
+
+
+  <!-- KIT -->
+  <section class="block">
+    <div class="h"><h2>O que acompanha o seu kit</h2></div>
+    <img src="assets/k_info.jpg" data-full="assets/k_info.jpg" alt="O que acompanha o kit: necessaire, baralho de 78 cartas, carta de boas-vindas com QR code e adesivos" style="width:100%;border-radius:6px;cursor:zoom-in">
+    <ul class="checks" style="margin:12px 0 0">
+      <li>Baralho completo com 78 cartas</li>
+      <li>Necessaire exclusiva para guardar o baralho</li>
+      <li>Carta de boas-vindas com QR code para o conteúdo das cartas</li>
+      <li>Kit de adesivos</li>
+    </ul>
+  </section>
+
+  <!-- AVALIAÇÕES -->
+  <section class="block" id="avaliacoes">
+    <div class="h"><h2>Quem já recebeu</h2><a href="#lista-rev">Ver tudo ›</a></div>
+    <div class="rev-strip">
+      <button data-full="assets/r_lari.jpg" data-cap="Lari"><img src="assets/r_lari.jpg" alt=""></button>
+      <button data-full="assets/r_vanessa.jpg" data-cap="Vanessa M."><img src="assets/r_vanessa.jpg" alt=""></button>
+      <button data-full="assets/r_marcio.jpg" data-cap="Márcio"><img src="assets/r_marcio.jpg" alt=""></button>
+      <button data-full="assets/r_felipe.jpg" data-cap="Felipe"><img src="assets/r_felipe.jpg" alt=""></button>
+      <button data-full="assets/r_junior_mundo.jpg" data-cap="Junior M."><img src="assets/r_junior_mundo.jpg" alt=""></button>
+      <button data-full="assets/verso.jpg" data-cap="Mayara H."><img src="assets/verso.jpg" alt=""></button>
+      <button data-full="assets/r_junior_caixa.jpg" data-cap="Junior M."><img src="assets/r_junior_caixa.jpg" alt=""></button>
+    </div>
+
+    <div id="lista-rev" style="margin-top:6px">
+      <div class="review">
+        <div class="who"><div class="ava" style="background:#b0417a">L</div><div><div class="n">Lari</div><div class="tag">✓ Recebeu o baralho</div></div></div>
+        <p>Meu Tarot preferido a partir de agora. Gente, sério… se tornou meu tarot preferido.</p>
+        <div class="pics"><button data-full="assets/r_lari.jpg" data-cap="Lari"><img src="assets/r_lari.jpg" alt=""></button></div>
+      </div>
+      <div class="review">
+        <div class="who"><div class="ava" style="background:#3f6fb5">J</div><div><div class="n">Junior M.</div><div class="tag">✓ Recebeu o baralho</div></div></div>
+        <p>De todas, essa é a minha carta preferida 🥰</p>
+        <div class="pics">
+          <button data-full="assets/r_junior_mundo.jpg" data-cap="Junior M. · O Mundo"><img src="assets/r_junior_mundo.jpg" alt=""></button>
+          <button data-full="assets/r_junior_caixa.jpg" data-cap="Junior M. · abrindo a caixa"><img src="assets/r_junior_caixa.jpg" alt=""></button>
+        </div>
+      </div>
+      <div class="review">
+        <div class="who"><div class="ava" style="background:#7a4fc0">V</div><div><div class="n">Vanessa M.</div><div class="tag">✓ Recebeu o baralho</div></div></div>
+        <p>O meu chegou hoje 🙏❤️❤️</p>
+        <div class="pics"><button data-full="assets/r_vanessa.jpg" data-cap="Vanessa M."><img src="assets/r_vanessa.jpg" alt=""></button></div>
+      </div>
+      <div class="review">
+        <div class="who"><div class="ava" style="background:#2f8f6b">M</div><div><div class="n">Márcio</div><div class="tag">✓ Recebeu o baralho</div></div></div>
+        <p>Encantado, gratidão.</p>
+        <div class="pics"><button data-full="assets/r_marcio.jpg" data-cap="Márcio"><img src="assets/r_marcio.jpg" alt=""></button></div>
+      </div>
+      <div class="review">
+        <div class="who"><div class="ava" style="background:#c46a25">F</div><div><div class="n">Felipe</div><div class="tag">✓ Recebeu o baralho</div></div></div>
+        <p>Maravilhosos 😍</p>
+        <div class="pics"><button data-full="assets/r_felipe.jpg" data-cap="Felipe · O Carro"><img src="assets/r_felipe.jpg" alt=""></button></div>
+      </div>
+      <div class="review">
+        <div class="who"><div class="ava" style="background:#a33b3b">M</div><div><div class="n">Mayara H.</div><div class="tag">✓ Recebeu o baralho</div></div></div>
+        <p>Teremos videozinhoooooo 💜</p>
+        <div class="pics"><button data-full="assets/verso.jpg" data-cap="Mayara H."><img src="assets/verso.jpg" alt=""></button></div>
+      </div>
+      <div class="meta" style="margin:10px 0 0">Mensagens e fotos enviadas pelos próprios compradores no grupo do baralho.</div>
+    </div>
+  </section>
+
+  <!-- LOJA -->
+  <section class="block">
+    <div class="shop">
+      <div class="logo2">☾</div>
+      <div>
+        <div class="nm">Tarô do Mundo Bruxo</div>
+        <div class="ds">Produto autoral e independente</div>
+      </div>
+      <a class="shop-wa" href="https://wa.me/5516991326614?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20do%20Tar%C3%B4%20do%20Mundo%20Bruxo%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg> Chat</a>
+    </div>
+    <div class="ds" style="margin-top:8px;font-size:13px;color:var(--muted)">WhatsApp do vendedor: (16) 99132-6614</div>
+    <div class="shop-stats">
+      <div><b>78</b>cartas</div>
+      <div><b>4</b>naipes</div>
+      <div><b>300g</b>papel couché</div>
+    </div>
+  </section>
+
+  <!-- ESPECIFICAÇÕES -->
+  <section class="block">
+    <div class="h"><h2>Especificações do produto</h2></div>
+    <table class="specs">
+      <tr><td>Quantidade</td><td>78 cartas (22 Arcanos Maiores + 56 Menores)</td></tr>
+      <tr><td>Formato</td><td>70 x 120 mm</td></tr>
+      <tr><td>Papel</td><td>Couché 300g</td></tr>
+      <tr><td>Impressão</td><td>Colorida, frente e verso</td></tr>
+      <tr><td>Acabamento</td><td>Laminação brilho frente e verso · recorte eletrônico</td></tr>
+      <tr><td>Produção</td><td>Física, em gráfica</td></tr>
+      <tr><td>Acompanha</td><td>Necessaire, carta de boas-vindas com QR code e kit de adesivos</td></tr>
+      <tr><td>Naipes</td><td>Varinhas · Cálices · Lâminas · Medalhas</td></tr>
+    </table>
+  </section>
+
+  <!-- DESCRIÇÃO -->
+  <section class="block">
+    <div class="h"><h2>Descrição do produto</h2></div>
+    <div class="desc collapsed" id="desc">
+      <p class="lead">78 cartas. 78 cenas. Um universo inteiro transformado em Tarô.</p>
+      <p>Se você cresceu fascinado por castelos, feitiços, poções, duelos, amizades improváveis e escolhas que mudam destinos, esse baralho vai te levar direto para esse lugar.</p>
+      <p>O Tarô do Mundo Bruxo foi criado carta por carta, conectando os significados tradicionais do Tarô com personagens, cenas, símbolos e acontecimentos inspirados em um dos universos de magia mais conhecidos do mundo. Cada carta traz uma referência visual que ajuda você a reconhecer emoções, conflitos, decisões e arquétipos de um jeito muito mais intuitivo.</p>
+
+      <h3>VOCÊ NÃO VAI OLHAR PARA A CARTA E VER SÓ UM ARCANO</h3>
+      <p>Você vai lembrar de uma cena. De um personagem. De uma escolha. De um momento em que alguém precisou enfrentar medo, poder, perda, amizade, ambição ou transformação.</p>
+      <div class="quote">O significado deixa de ser apenas uma palavra decorada. Ele ganha história.</div>
+      <img src="assets/spread.jpg" data-full="assets/spread.jpg" alt="Tiragem com seis cartas">
+
+      <h3>UM TARÔ COMPLETO</h3>
+      <p>22 Arcanos Maiores e 56 Arcanos Menores. Os quatro naipes tradicionais foram reinterpretados dentro desse universo mágico:</p>
+      <div class="naipes">
+        <div class="naipe"><b>Varinhas</b><span>naipe de Paus</span></div>
+        <div class="naipe"><b>Cálices</b><span>naipe de Copas</span></div>
+        <div class="naipe"><b>Lâminas</b><span>naipe de Espadas</span></div>
+        <div class="naipe"><b>Medalhas</b><span>naipe de Ouros</span></div>
+      </div>
+      <p>A estrutura tradicional continua presente. O que muda é a forma como ela ganha vida.</p>
+
+      <h3>CADA CARTA TRAZ UMA PASSAGEM</h3>
+      <p>O baralho não foi criado apenas para ser bonito. Cada carta foi pensada a partir da relação entre o significado do Arcano e uma cena específica: uma passagem de coragem, uma escolha difícil, uma perda, uma disputa, um encontro, uma mudança de destino. A ideia é que você olhe para a carta e a própria cena já ajude a abrir a interpretação.</p>
+
+
+      <h3>PARA QUEM É ESSE BARALHO</h3>
+      <ul class="checks">
+        <li>Para quem ama Tarô</li>
+        <li>Para quem gosta de universos de magia</li>
+        <li>Para quem quer aprender os Arcanos de um jeito mais visual</li>
+        <li>Para quem já atende e quer um baralho diferente</li>
+        <li>Para quem quer uma peça especial na coleção</li>
+      </ul>
+
+      <h3>IMAGINE UMA LEITURA ASSIM</h3>
+      <p>Você vira uma carta e reconhece imediatamente o que está acontecendo naquela cena. Quem está em conflito. Quem está tentando controlar. Quem precisa escolher. Quem está perdendo. Quem está assumindo o próprio poder. Antes mesmo de procurar o significado tradicional, a leitura já começou.</p>
+
+      <h3>SUA LEITURA CONTINUA SENDO SUA</h3>
+      <p>O Tarô do Mundo Bruxo mantém a estrutura tradicional do Tarô. O universo mágico entra como linguagem visual. Você pode usar em leituras pessoais, atendimentos, estudos, tiragens temáticas ou coleção.</p>
+
+      <h3>ELE NASCEU DE UM PEDIDO</h3>
+      <p>Esse baralho começou com algumas cartas. Depois vieram os pedidos. Mais cartas, mais cenas, mais personagens, até chegar a um baralho completo.</p>
+      <p>Foi criado um grupo para acompanhar o processo, e várias pessoas participaram desde o início, confiando na ideia antes mesmo da primeira impressão.</p>
+      <img src="assets/producao.jpg" data-full="assets/producao.jpg" alt="Baralhos prontos saindo da gráfica">
+      <p>O resultado é um Tarô inteiro construído dentro de um universo de magia reconhecível, cheio de referências e memória afetiva.</p>
+    </div>
+    <button class="more-btn" id="moreDesc">Ver mais ⌄</button>
+  </section>
+
+  <!-- DÚVIDAS -->
+  <section class="block">
+    <div class="h"><h2>Dúvidas frequentes</h2></div>
+    <details>
+      <summary>Já sei ler Tarô. Preciso reaprender?</summary>
+      <p>Não. Você continua usando normalmente os significados tradicionais dos Arcanos. As cenas entram como uma camada a mais de leitura.</p>
+    </details>
+    <details>
+      <summary>Estou começando. Serve pra mim?</summary>
+      <p>Serve muito. As referências visuais ajudam a criar associações: em vez de decorar significados isolados, você relaciona cada carta a uma cena, comportamento ou conflito. Isso facilita bastante o estudo.</p>
+    </details>
+    <details>
+      <summary>Quanto fica o frete?</summary>
+      <p>O frete é calculado de acordo com o endereço informado no momento da compra.</p>
+    </details>
+    <details>
+      <summary>Ficou com alguma dúvida?</summary>
+      <p>Fale direto com o vendedor no WhatsApp: <a href="https://wa.me/5516991326614?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20do%20Tar%C3%B4%20do%20Mundo%20Bruxo%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener" style="color:#1fa855;font-weight:600">(16) 99132-6614</a></p>
+    </details>
+    <details>
+      <summary>O que vem junto com o baralho?</summary>
+      <p>As 78 cartas, a necessaire exclusiva para guardar o baralho, a carta de boas-vindas com QR code para acessar o conteúdo das cartas e um kit de adesivos.</p>
+    </details>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final">
+    <h2>Entre nesse mundo</h2>
+    <p>78 cartas. Quatro naipes reinterpretados. Cenas que você reconhece.<br>E um jeito diferente de acessar os mesmos arquétipos do Tarô.</p>
+    <span class="price"><s style="font-size:16px;opacity:.6;color:#fff;font-weight:400" class="strike250">R$ 250</s> <span class="pval">R$ 197,00</span> <small style="font-size:14px;color:#fff;opacity:.8;font-weight:400">+ frete</small></span>
+    <a class="cta buy" href="#">QUERO O MEU TARÔ</a>
+  </section>
+
+  <p class="disclaimer">Produto autoral e independente, criado a partir de referências gerais de fantasia e universo mágico.</p>
+</div>
+
+<!-- BARRA DE COMPRA -->
+<nav class="bottombar">
+  <div class="in">
+    <a class="bb-side wa" href="https://wa.me/5516991326614?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20do%20Tar%C3%B4%20do%20Mundo%20Bruxo%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></span>Falar com vendedor</a>
+    <a class="bb-buy buy" href="#">Comprar agora<small class="bbsub">de R$ 250 por R$ 197 + frete</small></a>
+  </div>
+</nav>
+
+<div class="fv-shade" id="fvShade"></div>
+<div class="fv" id="fv">
+  <button class="fv-x" id="fvX" aria-label="Fechar vídeo">×</button>
+  <video id="fvVid" src="assets/video.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+  <div class="fv-tag">▶ Unboxing</div>
+</div>
+<div class="lb" id="lb"><button class="x" aria-label="Fechar">×</button><img alt=""><div class="cap"></div></div>
+
+<script>
+/* ====== COLOQUE AQUI O LINK DE PAGAMENTO ====== */
+const CHECKOUT_URL = "https://loja.infinitepay.io/thiago-cirilo-6bb/ind3715-tarot-do-mundo-bruxo";
+/* ============================================== */
+const WA_250 = "https://wa.me/5516991326614?text=Ol%C3%A1!%20Quero%20comprar%20o%20Tar%C3%B4%20do%20Mundo%20Bruxo%20(R%24%20250%20%2B%20frete).";
+document.querySelectorAll('.buy').forEach(a=>{a.href=CHECKOUT_URL;a.target='_blank';a.rel='noopener'});
+
+/* Temporizador: 10 minutos a partir da primeira visita. Não reinicia ao reabrir a página. */
+(function(){
+  const KEY='tmb_oferta_inicio', DUR=10*60*1000;
+  let start=null;
+  try{start=parseInt(localStorage.getItem(KEY),10)}catch(e){}
+  if(!start||isNaN(start)){start=Date.now();try{localStorage.setItem(KEY,String(start))}catch(e){}}
+  const end=start+DUR, mm=document.getElementById('mm'), ss=document.getElementById('ss'), pt=document.getElementById('pt');
+  function expire(){
+    const o=document.getElementById('offer');o.classList.add('ended');
+    o.innerHTML='<span>A oferta de R$ 197 encerrou · valor atual <b style="color:#fff">R$ 250</b></span>';
+    document.getElementById('priceMain').innerHTML='<small>R$</small> 250<small>,00</small>';
+    ['priceOld','priceOff'].forEach(id=>document.getElementById(id).remove());
+    document.getElementById('priceTimer').textContent='Oferta promocional encerrada';
+    document.querySelectorAll('.strike250').forEach(e=>e.remove());
+    document.querySelectorAll('.pval').forEach(e=>e.textContent='R$ 250,00');
+    document.querySelectorAll('.bbsub').forEach(e=>e.textContent='R$ 250,00 + frete');
+    document.querySelectorAll('.buy').forEach(a=>a.href=WA_250);
+  }
+  function tick(){
+    const left=end-Date.now();
+    if(left<=0){expire();return}
+    const m=Math.floor(left/60000), s=Math.floor(left%60000/1000);
+    const M=String(m).padStart(2,'0'), S=String(s).padStart(2,'0');
+    mm.textContent=M;ss.textContent=S;pt.textContent=M+':'+S;
+    setTimeout(tick,1000-(Date.now()%1000));
+  }
+  tick();
+})();
+
+const slides=document.getElementById('slides'),counter=document.getElementById('counter'),thumbs=[...document.querySelectorAll('#thumbs button')];
+const n=slides.children.length;
+function cur(){return Math.round(slides.scrollLeft/slides.clientWidth)}
+slides.addEventListener('scroll',()=>{const i=cur();counter.textContent=(i+1)+'/'+n;thumbs.forEach((t,j)=>t.classList.toggle('on',i===j));
+},{passive:true});
+thumbs.forEach((t,i)=>t.addEventListener('click',()=>slides.scrollTo({left:i*slides.clientWidth,behavior:'smooth'})));
+
+const lb=document.getElementById('lb'),lbImg=lb.querySelector('img'),lbCap=lb.querySelector('.cap');
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-full]');
+  if(el&&!e.target.closest('video')){lbImg.src=el.dataset.full;lbCap.textContent=el.dataset.cap||'';lb.classList.add('on');return}
+  if(e.target===lb||e.target.classList.contains('x'))lb.classList.remove('on');
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+
+const desc=document.getElementById('desc'),more=document.getElementById('moreDesc');
+more.addEventListener('click',()=>{const c=desc.classList.toggle('collapsed');more.textContent=c?'Ver mais ⌄':'Ver menos ⌃';if(c)desc.scrollIntoView({behavior:'smooth'})});
+
+const fv=document.getElementById('fv'),fvVid=document.getElementById('fvVid'),fvShade=document.getElementById('fvShade');
+function fvSmall(){fv.classList.remove('big');fvShade.classList.remove('on');fvVid.muted=true;fvVid.controls=false;fvVid.play().catch(()=>{})}
+fv.addEventListener('click',e=>{if(e.target.id==='fvX')return;if(!fv.classList.contains('big')){fv.classList.add('big');fvShade.classList.add('on');fvVid.currentTime=0;fvVid.muted=false;fvVid.controls=true;fvVid.play().catch(()=>{})}});
+document.getElementById('fvX').addEventListener('click',e=>{e.stopPropagation();if(fv.classList.contains('big'))fvSmall();else{fv.classList.add('hide');fvVid.pause()}});
+fvShade.addEventListener('click',fvSmall);
+fvVid.play().catch(()=>{});
+</script>
+</body>
+</html>
