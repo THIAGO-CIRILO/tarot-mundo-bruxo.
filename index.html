@@ -447,7 +447,7 @@ details p{margin-top:8px;font-size:14px;color:#444}
     <h2>Entre nesse mundo</h2>
     <p>78 cartas. Quatro naipes reinterpretados. Cenas que você reconhece.<br>E um jeito diferente de acessar os mesmos arquétipos do Tarô.</p>
     <span class="price"><s style="font-size:16px;opacity:.6;color:#fff;font-weight:400" class="strike250">R$ 250</s> <span class="pval">R$ 197,00</span> <small style="font-size:14px;color:#fff;opacity:.8;font-weight:400">+ frete</small></span>
-    <a class="cta buy" href="#">QUERO O MEU TARÔ</a>
+    <a class="cta buy" href="https://loja.infinitepay.io/thiago-cirilo-6bb/ind3715-tarot-do-mundo-bruxo" target="_blank" rel="noopener">QUERO O MEU TARÔ</a>
   </section>
 
   <p class="disclaimer">Produto autoral e independente, criado a partir de referências gerais de fantasia e universo mágico.</p>
@@ -457,7 +457,7 @@ details p{margin-top:8px;font-size:14px;color:#444}
 <nav class="bottombar">
   <div class="in">
     <a class="bb-side wa" href="https://wa.me/5516991326614?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20do%20Tar%C3%B4%20do%20Mundo%20Bruxo%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></span>Falar com vendedor</a>
-    <a class="bb-buy buy" href="#">Comprar agora<small class="bbsub">de R$ 250 por R$ 197 + frete</small></a>
+    <a class="bb-buy buy" href="https://loja.infinitepay.io/thiago-cirilo-6bb/ind3715-tarot-do-mundo-bruxo" target="_blank" rel="noopener">Comprar agora<small class="bbsub">de R$ 250 por R$ 197 + frete</small></a>
   </div>
 </nav>
 
@@ -473,7 +473,6 @@ details p{margin-top:8px;font-size:14px;color:#444}
 /* ====== COLOQUE AQUI O LINK DE PAGAMENTO ====== */
 const CHECKOUT_URL = "https://loja.infinitepay.io/thiago-cirilo-6bb/ind3715-tarot-do-mundo-bruxo";
 /* ============================================== */
-const WA_250 = "https://wa.me/5516991326614?text=Ol%C3%A1!%20Quero%20comprar%20o%20Tar%C3%B4%20do%20Mundo%20Bruxo%20(R%24%20250%20%2B%20frete).";
 document.querySelectorAll('.buy').forEach(a=>{a.href=CHECKOUT_URL;a.target='_blank';a.rel='noopener'});
 
 /* Temporizador: 10 minutos a partir da primeira visita. Não reinicia ao reabrir a página. */
@@ -492,7 +491,7 @@ document.querySelectorAll('.buy').forEach(a=>{a.href=CHECKOUT_URL;a.target='_bla
     document.querySelectorAll('.strike250').forEach(e=>e.remove());
     document.querySelectorAll('.pval').forEach(e=>e.textContent='R$ 250,00');
     document.querySelectorAll('.bbsub').forEach(e=>e.textContent='R$ 250,00 + frete');
-    document.querySelectorAll('.buy').forEach(a=>a.href=WA_250);
+    document.querySelectorAll('.buy').forEach(a=>a.href=CHECKOUT_URL);
   }
   function tick(){
     const left=end-Date.now();
